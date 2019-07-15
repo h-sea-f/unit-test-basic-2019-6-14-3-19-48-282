@@ -25,7 +25,7 @@ class ExpenseServiceTest {
         Project project = new Project(ProjectType.EXTERNAL, "Project A");
         ExpenseService expenseService = new ExpenseService();
         // when
-        ExpenseType expenseType=expenseService.getExpenseCodeByProjectTypeAndName(project);
+        ExpenseType expenseType = expenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
         Assertions.assertSame(expenseType, ExpenseType.EXPENSE_TYPE_A);
     }
@@ -36,7 +36,7 @@ class ExpenseServiceTest {
         Project project = new Project(ProjectType.EXTERNAL, "Project B");
         ExpenseService expenseService = new ExpenseService();
         // when
-        ExpenseType expenseType=expenseService.getExpenseCodeByProjectTypeAndName(project);
+        ExpenseType expenseType = expenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
         Assertions.assertSame(expenseType, ExpenseType.EXPENSE_TYPE_B);
     }
@@ -47,7 +47,7 @@ class ExpenseServiceTest {
         Project project = new Project(ProjectType.EXTERNAL, "Project C");
         ExpenseService expenseService = new ExpenseService();
         // when
-        ExpenseType expenseType=expenseService.getExpenseCodeByProjectTypeAndName(project);
+        ExpenseType expenseType = expenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
         Assertions.assertSame(expenseType, ExpenseType.OTHER_EXPENSE);
     }
@@ -55,7 +55,10 @@ class ExpenseServiceTest {
     @Test
     void should_throw_unexpected_project_exception_if_project_is_invalid() {
         // given
+        Project project = new Project(ProjectType.UNEXPECTED_PROJECT_TYPE, "Project C");
         // when
+//        ExpenseType expenseType = ExpenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
+        Assertions.assertThrows(UnexpectedProjectTypeException.class,()->ExpenseService.getExpenseCodeByProjectTypeAndName(project));
     }
 }

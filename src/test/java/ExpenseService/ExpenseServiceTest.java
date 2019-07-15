@@ -14,17 +14,20 @@ class ExpenseServiceTest {
     @Test
     void should_return_internal_expense_type_if_project_is_internal() throws UnexpectedProjectTypeException {
         // given
-        Project project=new Project(ProjectType.EXTERNAL,"firstProject");
+        Project project=new Project(ProjectType.INTERNAL,"firstProject");
         // when
-        ProjectType projectType=project.getProjectType();
+        ExpenseService expenseService=new ExpenseService();
+        ExpenseType expenseType=expenseService.getExpenseCodeByProjectTypeAndName(project);
         // then
-        Assertions.assertSame(projectType,ProjectType.EXTERNAL);
+        Assertions.assertSame(expenseType,ExpenseType.INTERNAL_PROJECT_EXPENSE);
     }
 
     @Test
     void should_return_expense_type_A_if_project_is_external_and_name_is_project_A() throws UnexpectedProjectTypeException {
         // given
+        Project project=new Project(ProjectType.EXTERNAL,"project A");
         // when
+
         // then
     }
 
